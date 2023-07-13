@@ -72,6 +72,11 @@ int main(){
 	return 1;
     }
 
+    if(write(fd_uaw, chunk, sizeof(int)) < 0){
+	perror("fail to write address of virtual memory");
+	return 1;
+    }
+
     //let pm know that pid of ua is written in pipe
     kill(pid_pm, SIGUSR1);
 	    

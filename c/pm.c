@@ -18,6 +18,7 @@
 //global variables
 int pid_ua;
 int fd_pmw, fd_uaw;
+int addr_ua;
 
 //signal handlers
 void handle_palloc(){
@@ -26,6 +27,11 @@ void handle_palloc(){
 
     if(read(fd_uaw, &sz, sizeof(size_t)) < 0){
 	perror("fail to read memory size from uaw pipe");
+	exit(0);
+    }
+
+    if(read(fd_uaw, &addr_ua, sizeof(int)) < 0){
+	perror("fail to read memory addr from uaw pipe");
 	exit(0);
     }
 }
